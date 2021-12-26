@@ -5,6 +5,9 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 var cors = require("cors");
+const dotenv = require("dotenv").config();
+console.log(dotenv.parsed);
+
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var shariRouter = require("./routes/shari");
@@ -47,7 +50,7 @@ app.use(function (err, req, res, next) {
 });
 
 mongoose
-  .connect("mongodb://localhost/practiceApi")
+  .connect(process.env.DB)
   .then(() => {
     console.log("connect succes");
   })
