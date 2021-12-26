@@ -23,7 +23,7 @@ const Sharyi = () => {
   ///
   const deleteSh = (id) => {
     axios
-      .delete(`http://localhost:3000/shari/${id}`)
+      .delete(`/shari/${id}`)
       .then((res) => {
         alert("Data Deleted");
         console.log(res);
