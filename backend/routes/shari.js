@@ -20,14 +20,24 @@ router.get("/", async function (req, res) {
 });
 router.get("/:id", async function (req, res) {
   console.log("getting");
-  const use = await Shari.find();
+  const use = await Shari.findById(req.params.id);
   res.send(use);
 });
 
-router.delete("de/:id", async function (req, res) {
+router.put("/:id", async function (req, res) {
+  console.log("updating");
+  console.log(req.body.shar);
+  const edit = req.body;
+  const use = await Shari.findByIdAndUpdate(req.params.id, edit);
+  await use.save();
+  res.send(use);
+});
+
+router.delete("/:id", async function (req, res) {
   console.log("delete");
-  let sharF = await sharF.findById(req.params.id);
-  await sharF.delete();
+  console.log(req.params.id);
+  await Shari.findByIdAndDelete(req.params.id);
+  // await sharF.delete();
   return res.send("deleted");
 });
 module.exports = router;

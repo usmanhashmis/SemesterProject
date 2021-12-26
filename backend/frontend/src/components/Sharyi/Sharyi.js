@@ -22,10 +22,13 @@ const Sharyi = () => {
 
   ///
   const deleteSh = (id) => {
-    axios.delete(`http://localhost:3000/shari/de/${id}`).then((err) => {
-      alert("Data Deleted");
-      console.log(err);
-    });
+    axios
+      .delete(`http://localhost:3000/shari/${id}`)
+      .then((res) => {
+        alert("Data Deleted");
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (

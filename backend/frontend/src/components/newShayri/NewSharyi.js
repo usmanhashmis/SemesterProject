@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router";
 import { TextField, Button, Box } from "@mui/material";
+import Sharyi from "../Sharyi/Sharyi";
 
 const NewSharyi = (props) => {
   const { id } = useParams();
@@ -47,7 +48,7 @@ const NewSharyi = (props) => {
             id="outlined-basic"
             label="Shar"
             variant="outlined"
-            value={shar}
+            value={shar ? shar : ""}
             row={8}
             onChange={(e) => {
               setShayari({ ...Shayari, shar: e.target.value });
@@ -57,7 +58,7 @@ const NewSharyi = (props) => {
           <TextField
             id="outlined-basic"
             label="Your Name"
-            value={writer}
+            value={writer ? writer : ""}
             onChange={(e) => {
               setShayari({ ...Shayari, writer: e.target.value });
             }}
@@ -76,7 +77,7 @@ const NewSharyi = (props) => {
               axios
                 .put("/shari/" + id, Shayari)
                 .then((res) => {
-                  console.log("data has been edited" + res.data);
+                  console.log("data has been edited " + res.data.Shari);
                   navigate("/Sharyi");
                 })
                 .catch((err) => {
